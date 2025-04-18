@@ -31,10 +31,13 @@ session_start();
     </main>
 
     <dialog id="dialogoRegistro">
-        <form method="dialog" id="formularioRegistro" action="registro.php">
+        <form method="dialog" id="formularioRegistro" enctype="multipart/form-data">
             <h2>Registro de Entrenador</h2>
             <label>
                 <input type="text" name="nombre" placeholder="Nombre" id="nombre">
+            </label>
+            <label>
+                <input type="number" name="edad" placeholder="Edad" id="edad" min="10" max="100">
             </label>
             <label>
                 <input type="email" name="email" placeholder="Correo electrónico" id="email">
@@ -48,7 +51,10 @@ session_start();
             <label>
                 <input type="password" name="confirmarPassword" placeholder="Confirmar Contraseña" id="confirmarPassword">
             </label>
-            <div class="botones-dialogo">
+            <label class="fotoPerfil"> Selecciona una foto de perfil
+                <input type="file" name="fotoPerfil" id="fotoPerfil">
+            </label>
+            <div class="botonesDialogo">
                 <button type="submit" id="botonRegistro">Registrarse</button>
                 <button type="button" id="botonCancelar">Cancelar</button>
             </div>

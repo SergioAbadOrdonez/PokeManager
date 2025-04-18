@@ -6,7 +6,7 @@
 }
 
 body {
-    background: linear-gradient(135deg, #ff3b3b, #ff5252);
+    background: #ff5252;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -17,7 +17,7 @@ main {
     background: white;
     padding: 2rem;
     border-radius: 20px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 20px black(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -123,7 +123,7 @@ dialog {
     border-radius: 20px;
     padding: 2rem;
     background: white;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 20px black;
     max-width: 400px;
     width: 90%;
     position: fixed;
@@ -151,7 +151,7 @@ dialog h2 {
     font-size: 1.5rem;
 }
 
-.botones-dialogo {
+.botonesDialogo {
     display: flex;
     gap: 1rem;
     margin-top: 1rem;
@@ -190,3 +190,4 @@ dialog h2 {
 #botonCancelar:hover {
     background: #ccc;
 }
+
