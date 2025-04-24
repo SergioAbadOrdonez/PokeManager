@@ -1,49 +1,61 @@
 <?php
-session_start();
+require_once 'includes/header.inc.php';
 ?>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokemanager - Inicio de Sesión</title>
-    <link rel="stylesheet" href="styles/styleLoginRegistro.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-</head>
-<body>
+
     <main>
-        <figure>
-            <img src="img/pokeball.png" alt="Pokeball" class="pokeball">
-        </figure>
-        <section>
-            <h1>Bienvenido a Pokemanager</h1>
-            <form action="login.php" method="POST">
-                <label>
-                    <input type="text" name="usuario" placeholder="Nombre de Entrenador">
-                </label>
-                <label>
-                    <input type="password" name="password" placeholder="Contraseña">
-                </label>
-                <button type="submit">Iniciar Sesión</button>
-            </form>
-            <p>¿No eres entrenador? <a href="#" id="registro">Regístrate aquí</a></p>
+        <section class="bienvenida">
+            <h2>Bienvenido a Pokemanager</h2>
+            <p>Tu plataforma definitiva para gestionar y organizar tu colección de Pokémon</p>
+        </section>
+
+        <section class="caracteristicas">
+            <article>
+                <h3>Gestiona tu Equipo</h3>
+                <p>Crea y personaliza tu equipo de Pokémon perfecto</p>
+            </article>
+            <article>
+                <h3>Combate contra otrs Entrenadores</h3>
+                <p>Usa tus pokemons y defiende tu orgullo peleando contra otros entrenadores</p>
+            </article>
+            <article>
+                <h3>Abre sobres</h3>
+                <p>Aumenta tu colección con la mejor de las addiciones: ¡¡LUDOPATÍA!!</p>
+            </article>
         </section>
     </main>
 
+    <dialog id="dialogoLogin">
+        <figure>
+            <img src="img/pokeball.png" alt="Pokeball" class="pokebalLogin">
+        </figure>
+        <form id="formularioLogin" method="POST" action="includes/login.inc.php">
+            <h2>Iniciar Sesión</h2>
+            <label>
+                <input type="text" name="nombre" placeholder="Nombre de Entrenador">
+            </label>
+            <label>
+                <input type="password" name="password" placeholder="Contraseña">
+            </label>
+            <p id="mensajeLogin" style="color: red" class="menajes"></p>
+            <button type="submit">Iniciar Sesión</button>
+            <button type="button" id="botonCancelarLogin">Cancelar</button>
+        </form>
+    </dialog>
+
     <dialog id="dialogoRegistro">
-        <form method="dialog" id="formularioRegistro" enctype="multipart/form-data">
+        <form id="formularioRegistro" enctype="multipart/form-data">
             <h2>Registro de Entrenador</h2>
             <label>
                 <input type="text" name="nombre" placeholder="Nombre" id="nombre">
             </label>
             <label>
-                <input type="number" name="edad" placeholder="Edad" id="edad" min="10" max="100">
+                <input type="number" name="edad" placeholder="Edad" id="edad">
             </label>
             <label>
                 <input type="email" name="email" placeholder="Correo electrónico" id="email">
             </label>
             <label>
-                <input type="email" name="confirmaEmail" placeholder="Confirmar correo electrónico" id="confirmaEmail">
+                <input type="email" name="confirmarEmail" placeholder="Confirmar correo electrónico" id="confirmarEmail">
             </label>
             <label>
                 <input type="password" name="password" placeholder="Contraseña" id="password">
@@ -54,13 +66,22 @@ session_start();
             <label class="fotoPerfil"> Selecciona una foto de perfil
                 <input type="file" name="fotoPerfil" id="fotoPerfil">
             </label>
-            <div class="botonesDialogo">
-                <button type="submit" id="botonRegistro">Registrarse</button>
-                <button type="button" id="botonCancelar">Cancelar</button>
-            </div>
+            <p id='mensaje' style='color: red' class="mensajes">
+                <?php
+                    if(isset($_SESSION["error_registro"])){
+                        echo $_SESSION["error_registro"];
+                        unset($_SESSION["error_registro"]);
+                    }
+                ?>
+            </p>
+            <button type="submit" id="botonRegistro">Registrarse</button>
+            <button type="button" id="botonCancelar">Cancelar</button>
         </form>
     </dialog>
 
-    <script src="registro.js"></script>
-</body>
-</html>
+    <script src="scripts/registro.js"></script>
+    <script src="scripts/login.js"></script>
+
+<?php
+require_once 'includes/footer.inc.php';
+?>
