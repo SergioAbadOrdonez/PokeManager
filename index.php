@@ -31,12 +31,19 @@ require_once 'includes/header.inc.php';
         <form id="formularioLogin" method="POST" action="includes/login.inc.php">
             <h2>Iniciar Sesión</h2>
             <label>
-                <input type="text" name="nombre" placeholder="Nombre de Entrenador">
+                <input type="text" name="nombre" id="nombreLogin" placeholder="Nombre de Entrenador">
             </label>
             <label>
-                <input type="password" name="password" placeholder="Contraseña">
+                <input type="password" name="password" id="passwordLogin" placeholder="Contraseña">
             </label>
-            <p id="mensajeLogin" style="color: red" class="menajes"></p>
+            <p id="mensajeLogin" style="color: red" class="menajes">
+                <?php
+                    if(isset($_SESSION["error_login"])){
+                        echo $_SESSION["error_login"];
+                        unset($_SESSION["error_login"]);
+                    }
+                ?>
+            </p>
             <button type="submit">Iniciar Sesión</button>
             <button type="button" id="botonCancelarLogin">Cancelar</button>
         </form>

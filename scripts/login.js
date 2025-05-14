@@ -12,30 +12,12 @@ botonCancelarLogin.addEventListener('click', () => {
 });
 
 formularioLogin.addEventListener('submit', (event) => {
-    event.preventDefault(); 
-    const mensajeLogin = document.getElementById('mensajeLogin');
-    const nombre = document.getElementById('nombre').value;
-    const password = document.getElementById('password').value;
+    const nombre = document.getElementById('nombreLogin').value;
+    const password = document.getElementById('passwordLogin').value;
 
-    if (nombre === "" || password === "" ) {
+    if (nombre === "" || password === "") {
+        event.preventDefault(); // Evita el envío si hay campos vacíos
+        const mensajeLogin = document.getElementById('mensajeLogin');
         mensajeLogin.innerText = 'Faltan campos por rellenar.';
-        return;
     }
-
-    const formData = new FormData(formularioLogin);
-
-    fetch("includes/login.inc.php", {
-        method: "POST",
-        body: formData
-    })
-    .then(response => {
-        return response.text();
-    })
-    .then(data => {
-        if(data.status === "error") {
-            mensaje.innerText = data.message;
-        } else {
-            dialogo.close();
-        }
-    });
 });
