@@ -321,3 +321,15 @@ main {
         font-size: 2rem;
     }
 }
+
+/*FOoOter*/
+
+footer{
+    background-color: white;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    font-size: 1.2rem;
+}

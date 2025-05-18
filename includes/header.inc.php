@@ -24,5 +24,3 @@ session_start();
             </menu>
         </nav>
     </header>
-</body>
-</html> 
