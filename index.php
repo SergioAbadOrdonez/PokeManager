@@ -49,7 +49,7 @@
     </dialog>
 
     <dialog id="dialogoRegistro">
-        <form id="formularioRegistro" enctype="multipart/form-data">
+        <form id="formularioRegistro" method="POST" action="includes/registro.inc.php" enctype="multipart/form-data">
             <h2>Registro de Entrenador</h2>
             <label>
                 <input type="text" name="nombre" placeholder="Nombre" id="nombre">

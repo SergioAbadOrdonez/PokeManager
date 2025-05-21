@@ -16,7 +16,9 @@ session_start();
 <body>
     <header>
         <nav>
-            <img src="img/pokeball.png" alt="Pokeball" class="pokeball">
+            <a href="index.php">
+                <img src="img/pokeball.png" alt="Pokeball" class="pokeball">
+            </a>
             <h1>Pokemanager</h1>
             <menu>
                 <button id="login">Iniciar Sesión</button>

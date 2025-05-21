@@ -9,27 +9,26 @@
         $edad = $_POST["edad"];
         
         if (empty($nombre) || empty($email) || empty($confirmarEmail) || empty($password) || empty($confirmarPassword) || empty($edad)) {
-        echo "Faltan campos por rellenar.";
-        exit();
+            $_SESSION["error"] = "No se ha podido completar el registro";
+            header("Location: ../error.php");
+            exit();
         }
 
         if ($edad < 14) {
-            echo "Tienes que tener más de 14 años.";
+            $_SESSION["error"] = "No se ha podido completar el registro";
+            header("Location: ../error.php");
             exit();
         }
 
         if ($email !== $confirmarEmail) {
-            echo "Los correos electrónicos no coinciden.";
+            $_SESSION["error"] = "No se ha podido completar el registro";
+            header("Location: ../error.php");
             exit();
         }
 
         if ($password !== $confirmarPassword) {
-            echo "Las contraseñas no coinciden.";
-            exit();
-        }
-
-        if ($edad < 14) {
-            echo "Tienes que tener más de 14 años.";
+            $_SESSION["error"] = "No se ha podido completar el registro";
+            header("Location: ../error.php");
             exit();
         }
 
@@ -43,11 +42,6 @@
             $rutaFoto = "img/profile_placeholder.png";
         }
 
-        if($edad < 14){
-            $_SESSION ["error_registro"] = "Necesitas tener 14 años o más.";
-            header("Location: ../index.php");
-            exit();
-        }
         try {
             require_once "db_connect.inc.php";
             
@@ -56,10 +50,8 @@
             $consulta->execute();
     
             if ($consulta->rowCount() > 0) {
-                $pdo = null;
-                $consulta = null;
-                $_SESSION ["error_registro"] = "Email ya registrado";
-                header("Location: ../index.php");
+                $_SESSION["error"] = "Este email ya se está usando";
+                header("Location: ../error.php");
                 exit();
             }
 
@@ -77,9 +69,14 @@
             $pdo = null;
             $consulta2 = null;
             header("Location: ../index.php");
-            die();
-        } catch (PDOException $p) {
-            die("Error: {$p->getMessage()}");
+            exit();
+            
+        } catch (PDOException $e) {
+            $_SESSION["error"] = "No se ha podido completar el registro";
+            header("Location: ../error.php");
+            exit();
         }
     }
+    header("Location: ../index.php");
+    exit();
 ?>

@@ -6,8 +6,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $contrasenya = $_POST["password"];
 
     if (empty($nombre) || empty($contrasenya)) {
-        $_SESSION["error_login"] = "Faltan campos por rellenar.";
-        header("Location: ../index.php");
+        $_SESSION["error"] = "Faltan campos por rellenar.";
+        header("Location: ../error.php");
         exit();
     }
 
@@ -18,16 +18,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $consulta->execute();
 
         if ($consulta->rowCount() == 0) {
-            $_SESSION["error_login"] = "Nombre no registrado";
-            header("Location: ../index.php");
+            $_SESSION["error"] = "Datos de inicio de sesión incorrectos";
+            header("Location: ../error.php");
             exit();
         }
 
         $usuario = $consulta->fetch(PDO::FETCH_ASSOC);
 
         if (!password_verify($contrasenya, $usuario["contrasenya"])) {
-            $_SESSION["error_login"] = "Contraseña incorrecta.";
-            header("Location: ../index.php");
+            $_SESSION["error"] = "Datos de inicio de sesión incorrectos";
+            header("Location: ../error.php");
             exit();
         }
 
@@ -36,7 +36,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         exit();
 
     } catch (PDOException $e) {
-        die("Error: " . $e->getMessage());
+        $_SESSION["error"] = "Error en el servidor: " . $e->getMessage();
+        header("Location: ../error.php");
+        exit();
     }
 }
 header("Location: ../index.php");
