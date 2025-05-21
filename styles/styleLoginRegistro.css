@@ -338,15 +338,31 @@ footer{
     max-width: 600px;
     margin: 100px auto;
     padding: 2rem;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: #faf9f6;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     text-align: center;
 }
 
 .error h2 {
-    color: #ff3b3b;
-    margin-bottom: 1rem;
+    color: #3498db;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+}
+
+.alerta-error {
+    background: #fbeaea;
+    color: #333;
+    border-left: 5px solid #e53935;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 6px;
+    font-size: 1.1rem;
+}
+
+.pikachu-triste {
+    width: 220px;
+    margin-top: 1rem;
 }
 
 .error p {

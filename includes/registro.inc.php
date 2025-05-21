@@ -9,25 +9,35 @@
         $edad = $_POST["edad"];
         
         if (empty($nombre) || empty($email) || empty($confirmarEmail) || empty($password) || empty($confirmarPassword) || empty($edad)) {
-            $_SESSION["error"] = "No se ha podido completar el registro";
+            $_SESSION["error"] = "Faltan campos por rellenar";
             header("Location: ../error.php");
             exit();
         }
 
         if ($edad < 14) {
-            $_SESSION["error"] = "No se ha podido completar el registro";
+            $_SESSION["error"] = "Necesitas tener más de 14 años";
             header("Location: ../error.php");
             exit();
         }
 
         if ($email !== $confirmarEmail) {
-            $_SESSION["error"] = "No se ha podido completar el registro";
+            $_SESSION["error"] = "Los correos electrónicos no coinciden";
             header("Location: ../error.php");
             exit();
         }
 
         if ($password !== $confirmarPassword) {
             $_SESSION["error"] = "No se ha podido completar el registro";
+            header("Location: ../error.php");
+            exit();
+        }
+
+        if (
+            strlen($password) < 8 ||
+            !preg_match('/[A-Za-z]/', $password) ||
+            !preg_match('/[0-9]/', $password)
+        ) {
+            $_SESSION["error"] = "La contraseña debe tener al menos 8 caracteres, una letra y un número";
             header("Location: ../error.php");
             exit();
         }
