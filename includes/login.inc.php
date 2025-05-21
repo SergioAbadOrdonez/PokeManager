@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     try {
         require_once "db_connect.inc.php";
-        $consulta = $pdo->prepare("SELECT id, contrasenya FROM usuarios WHERE nombre = :nombre");
+        $consulta = $pdo->prepare("SELECT id, contrasenya,nombre,fotoPerfil FROM usuarios WHERE nombre = :nombre");
         $consulta->bindParam(":nombre", $nombre);
         $consulta->execute();
 
@@ -31,8 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             exit();
         }
 
-        $_SESSION["token"] = $usuario["id"];
-        header("Location: ../perfil.php");
+        $_SESSION["username"] = $usuario["nombre"];
+        $_SESSION["avatar"] = $usuario["fotoPerfil"];
+        header("Location: ../index.php");
         exit();
 
     } catch (PDOException $e) {

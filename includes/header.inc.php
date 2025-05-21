@@ -14,16 +14,38 @@ session_start();
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav>
+    <header class="cabecera">
+        <nav class="barra-navegacion">
             <a href="index.php">
                 <img src="img/pokeball.png" alt="Pokeball" class="pokeball">
             </a>
-            <h1>Pokemanager</h1>
-            <menu>
-                <button id="login">Iniciar Sesión</button>
-                <button id="registro">Registrarse</button>
-            </menu>
+            <h1 class="titulo">Pokemanager</h1>
+            <?php
+            echo '<pre>';
+            print_r($_SESSION);
+            echo '</pre>';
+            ?>
+            <?php if (isset($_SESSION['username'])): ?>
+                <span class="usuario-caja">
+                    Hola, <b class="usuario-nombre"> <?php echo htmlspecialchars($_SESSION['username']); ?> </b>
+                    <img src="
+                    <?php 
+                        echo htmlspecialchars(
+                            isset($_SESSION['avatar']) && !empty($_SESSION['avatar']) 
+                            ? $_SESSION['avatar'] 
+                            : 'img/profile_placeholder.png'
+                        ); 
+                    ?>" 
+            alt="Avatar" 
+            class="usuario-avatar"
+        >
+                </span>
+            <?php else: ?>
+                <menu class="botones-sesion">
+                    <button id="login">Iniciar Sesión</button>
+                    <button id="registro">Registrarse</button>
+                </menu>
+            <?php endif; ?>
         </nav>
     </header>
     <dialog id="dialogoLogin">
